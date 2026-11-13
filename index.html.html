@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى أجمل كنزي ❤️</title>
+    <!-- استدعاء خط Cairo و Tajawal للغة العربية الأنيقة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- استدعاء Tailwind CSS للتنسيق المتجاوب -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-dark-1: #1a0f2e;
+            --bg-dark-2: #120921;
+            --gold-accent: #f5b041;
+            --gold-border: rgba(255, 180, 100, 0.25);
+            --card-bg: rgba(34, 20, 58, 0.65);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: radial-gradient(circle at top center, #261544 0%, #160c28 50%, #0f071c 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        /* الكروت الزجاجية الداكنة ذات الإطار الذهبي الدافئ */
+        .glass-card {
+            background: linear-gradient(145deg, rgba(42, 25, 72, 0.68) 0%, rgba(24, 13, 44, 0.85) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--gold-border);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 215, 160, 0.12);
+        }
+
+        /* تدرج الأزرار الرئيسي المستوحى من الغروب */
+        .sunset-btn {
+            background: linear-gradient(90deg, #f7b733 0%, #fc4a1a 55%, #ec4899 100%);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.35);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .sunset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(236, 72, 153, 0.5);
+        }
+
+        .sunset-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* حقل إدخال كلمة السر */
+        .password-input {
+            background: rgba(18, 9, 33, 0.85);
+            border: 1.5px solid rgba(245, 176, 65, 0.45);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 15px rgba(245, 176, 65, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #f5b041;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5), 0 0 22px rgba(245, 176, 65, 0.3);
+        }
+
+        /* أنيميشن نبض القلب الأحمر ثلاثي الأبعاد */
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 18px rgba(239, 68, 68, 0.65)); }
+            15% { transform: scale(1.14); filter: drop-shadow(0 0 28px rgba(239, 68, 68, 0.9)); }
+            30% { transform: scale(1.03); }
+            45% { transform: scale(1.12); filter: drop-shadow(0 0 26px rgba(239, 68, 68, 0.85)); }
+            60% { transform: scale(1); }
+        }
+
+        .heart-pulse-3d {
+            animation: heartbeat 2.2s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        /* أنيميشن الاهتزاز عند إدخال كلمة سر خاطئة */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        .shake-error {
+            animation: shake 0.45s ease-in-out;
+        }
+
+        /* أنيميشن سهم التمرير للأسفل */
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(7px); }
+        }
+
+        .bounce-arrow {
+            animation: bounceSlow 1.8s infinite ease-in-out;
+        }
+
+        /* أنيميشن ظهور العناصر عند التمرير */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.75s ease-out, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* أنيميشن القلوب الطائرة التفاعلية */
+        @keyframes floatUpHeart {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0) scale(0.6) rotate(0deg);
+            }
+            50% {
+                opacity: 0.95;
+                transform: translate(calc(-50% + var(--drift)), -110px) scale(1.15) rotate(var(--rot));
+            }
+            100% {
+                opacity: 0;
+                transform: translate(calc(-50% + var(--drift2)), -240px) scale(0.85) rotate(calc(var(--rot) * -1));
+            }
+        }
+
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            user-select: none;
+            animation: floatUpHeart 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* نجوم وقلوب خلفية خفيفة */
+        @keyframes ambientFloat {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.25; }
+            50% { transform: translateY(-18px) scale(1.15); opacity: 0.55; }
+        }
+
+        .ambient-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            animation: ambientFloat var(--dur) infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+
+        /* إخفاء شريط التمرير مع الحفاظ على السلاسة */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #120921;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(245, 176, 65, 0.3);
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="selection:bg-pink-500/30 selection:text-amber-200">
+
+    <!-- إضاءات محيطية ناعمة في الخلفية -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-purple-700/20 blur-[90px]"></div>
+        <div class="absolute top-1/3 -left-24 w-72 h-72 rounded-full bg-pink-600/15 blur-[95px]"></div>
+        <div class="absolute bottom-10 right-1/4 w-80 h-80 rounded-full bg-amber-500/10 blur-[100px]"></div>
+    </div>
+
+    <!-- حاوية الجزيئات العائمة في الخلفية -->
+    <div id="ambient-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- =========================================================
+         الشاشة الأولى: شاشة القفل بكلمة المرور (19109)
+    ========================================================== -->
+    <section id="lock-screen" class="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-8 transition-all duration-700">
+        <div class="w-full max-w-[420px] glass-card rounded-[32px] p-7 sm:p-9 text-center relative overflow-hidden">
+            
+            <!-- توهج علوي خفيف داخل الكارت -->
+            <div class="absolute -top-16 left-1/2 -translate-x-1/2 w-48 h-48 bg-red-500/15 rounded-full blur-2xl pointer-events-none"></div>
+
+            <!-- الدائرة المتوهجة وبداخلها القلب الأحمر بدلاً من الصورة -->
+            <div class="relative mx-auto mb-5 w-32 h-32 rounded-full flex items-center justify-center bg-gradient-to-b from-[#2e194d] to-[#1a0d30] border-2 border-amber-400/40 shadow-[0_0_35px_rgba(239,68,68,0.28)]">
+                <div class="absolute inset-1.5 rounded-full border border-red-400/20"></div>
+                <!-- قلب أحمر ثلاثي الأبعاد نابض -->
+                <div class="heart-pulse-3d select-none" aria-label="قلب أحمر">
+                    <svg class="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="redHeart3D" cx="35%" cy="30%" r="70%">
+                                <stop offset="0%" stop-color="#ff7b7b"/>
+                                <stop offset="45%" stop-color="#ef4444"/>
+                                <stop offset="85%" stop-color="#b91c1c"/>
+                                <stop offset="100%" stop-color="#7f1d1d"/>
+                            </radialGradient>
+                        </defs>
+                        <path d="M32 56.5C32 56.5 7 40.8 7 22.8C7 14.9 13.2 8.5 21 8.5C25.7 8.5 29.9 10.9 32 14.6C34.1 10.9 38.3 8.5 43 8.5C50.8 8.5 57 14.9 57 22.8C57 40.8 32 56.5 32 56.5Z" fill="url(#redHeart3D)"/>
+                        <!-- لمعة إضاءة ثلاثية الأبعاد على القلب -->
+                        <ellipse cx="20" cy="18" rx="4.5" ry="2.5" transform="rotate(-30 20 18)" fill="rgba(255,255,255,0.45)"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- الاسم بالذهبي -->
+            <p class="text-[#f5b041] text-xs sm:text-sm font-bold tracking-[0.22em] uppercase mb-3">
+                ✨ KENZY
+            </p>
+
+            <!-- العنوان الرئيسي -->
+            <h1 class="text-2xl sm:text-[26px] font-extrabold text-white leading-snug mb-2.5">
+                عندي ليكي حاجة صغيرة يا كنزي 🤍
+            </h1>
+
+            <!-- النص الفرعي -->
+            <p class="text-gray-300 text-sm sm:text-[15px] leading-relaxed mb-7">
+                بس الأول... اكتبي كلمة السر عشان نفتحه سوا ❤️
+            </p>
+
+            <!-- نموذج كلمة السر -->
+            <form id="password-form" class="space-y-4" novalidate>
+                <div>
+                    <input
+                        type="password"
+                        inputmode="numeric"
+                        id="password-input"
+                        placeholder="اكتبي كلمة السر هنا..."
+                        autocomplete="off"
+                        class="password-input w-full py-3.5 px-5 rounded-full text-center text-white text-base sm:text-lg font-bold tracking-widest placeholder:text-gray-400 placeholder:font-normal placeholder:tracking-normal"
+                    />
+                </div>
+
+                <!-- رسالة الخطأ المخفية افتراضياً -->
+                <div id="error-box" class="hidden py-2.5 px-4 rounded-2xl bg-red-500/15 border border-red-400/35 text-amber-200 text-sm font-semibold">
+                    لأ يا كنزي 😊 جربي تاني ❤️
+                </div>
+
+                <!-- زر الدخول -->
+                <button
+                    type="submit"
+                    class="sunset-btn w-full py-3.5 px-6 rounded-full text-white font-bold text-base sm:text-lg flex items-center justify-center gap-2 cursor-pointer"
+                >
+                    <span>دخول</span>
+                    <span>🤍</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- تذييل شاشة القفل -->
+        <p class="mt-6 text-xs text-amber-200/60 font-medium tracking-wide">
+            ✨ Made with love, especially for Kenzy
+        </p>
+    </section>
+
+    <!-- =========================================================
+         الشاشة الثانية: الصفحة الرئيسية للمفاجأة الرومانسية
+    ========================================================== -->
+    <main id="main-content" class="hidden opacity-0 transition-opacity duration-1000 relative z-10 w-full max-w-[480px] mx-auto px-4 pb-14 pt-6">
+
+        <!-- 1. قسم البداية (Hero Section) -->
+        <section class="relative pt-10 pb-12 text-center flex flex-col items-center">
+            <!-- خلفية قلب أحمر ضبابي متوهج خلف العنوان -->
+            <div class="absolute top-2 left-1/2 -translate-x-1/2 w-56 h-56 pointer-events-none flex items-center justify-center opacity-35 blur-xl">
+                <svg class="w-48 h-48 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+            </div>
+
+            <!-- شارة الملكة -->
+            <div class="relative inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#24133e]/85 border border-amber-400/35 text-[#f5b041] text-xs sm:text-sm font-semibold mb-5 shadow-md">
+                <span>✨ إلى الملكة المتواجدة في قلبي</span>
+            </div>
+
+            <!-- العنوان الرئيسي الكبير -->
+            <h1 class="relative text-3xl sm:text-4xl font-extrabold text-white mb-3 tracking-tight">
+                أهلاً بأجمل كنزي ❤️
+            </h1>
+
+            <!-- السطر الفرعي -->
+            <div class="relative flex items-center justify-center gap-2 text-[#f5b041] font-bold text-base sm:text-lg mb-5">
+                <span>كنزي ❤️</span>
+                <span class="text-amber-300/60">•</span>
+                <span class="tracking-wider">Kenzy ✨</span>
+            </div>
+
+            <!-- الفقرة التمهيدية -->
+            <p class="relative text-gray-200/90 text-sm sm:text-base leading-relaxed max-w-sm mx-auto mb-9">
+                الموقع ده معمول مخصوص عشانك.. وعشان أقولك كلام يمكن مقدرش أقوله كل يوم، بس جوايا كتير جدًا ❤️
+            </p>
+
+            <!-- إشارة النزول للأسفل -->
+            <a href="#welcome-section" class="inline-flex flex-col items-center gap-1.5 text-[#f5b041] text-xs sm:text-sm font-semibold hover:text-amber-300 transition-colors">
+                <span>انزلي عشان تشوفي المفاجأة</span>
+                <svg class="w-5 h-5 bounce-arrow" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </a>
+        </section>
+
+        <!-- 2. كارت رسالة الترحيب من القلب -->
+        <section id="welcome-section" class="reveal-item mb-8">
+            <div class="glass-card rounded-[28px] p-6 sm:p-7">
+                <div class="flex items-center gap-3.5 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-400/35 flex items-center justify-center text-2xl shadow-inner shrink-0">
+                        💛
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-extrabold text-white">يا كنزي،</h2>
+                        <p class="text-xs text-[#f5b041] font-semibold">رسالة ترحيب من القلب</p>
+                    </div>
+                </div>
+
+                <div class="space-y-3 text-gray-200 text-sm sm:text-[15px] leading-relaxed">
+                    <p>
+                        يمكن الموقع ده مجرد شوية كلام وشوية تصميمات، بس كل تفصيلة فيه معمولة مخصوص عشانك.
+                    </p>
+                    <p>
+                        كنت عايز أعمل حاجة تفضل فاكرة منها قد إيه إنتِ غالية عندي، وقد إيه وجودك في حياتي حاجة جميلة جدًا ❤️
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. قسم صندوق الهدية التفاعلي والرسالة السرية -->
+        <section class="reveal-item mb-10">
+            <!-- الصندوق المغلق -->
+            <div id="gift-closed-card" class="glass-card rounded-[28px] p-7 text-center transition-all duration-500">
+                <button
+                    type="button"
+                    id="gift-icon-btn"
+                    aria-label="افتحي الهدية"
+                    class="mx-auto mb-5 w-20 h-20 rounded-3xl bg-gradient-to-br from-purple-500 via-pink-500 to-amber-500 p-[2px] shadow-[0_0_30px_rgba(236,72,153,0.45)] hover:scale-105 active:scale-95 transition-transform cursor-pointer block"
+                >
+                    <div class="w-full h-full rounded-[22px] bg-[#23123d]/90 flex items-center justify-center text-4xl">
+                        🎁
+                    </div>
+                </button>
+
+                <h2 class="text-xl sm:text-2xl font-extrabold text-white mb-2">
+                    افتحي يا نور عيني ❤️
+                </h2>
+
+                <p class="text-gray-300 text-sm leading-relaxed mb-6 max-w-xs mx-auto">
+                    اضغطي على الهدية عشان تفتحي الرسالة الخاصة المخبأة ليكي وحدك.
+                </p>
+
+                <button
+                    type="button"
+                    id="open-box-btn"
+                    class="sunset-btn w-full sm:w-auto px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base inline-flex items-center justify-center gap-2 cursor-pointer"
+                >
+                    <span>افتحي البوكس</span>
+                    <span>🤍</span>
+                </button>
+            </div>
+
+            <!-- كارت الرسالة السرية (يظهر بعد فتح البوكس) -->
+            <div id="secret-letter-card" class="hidden glass-card rounded-[28px] p-6 sm:p-7 border-amber-400/45 shadow-[0_0_40px_rgba(245,176,65,0.15)]">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-amber-400/15">
+                    <h3 class="text-xl font-extrabold text-[#f5b041]">
+                        ✨ يا كنزي ❤️
+                    </h3>
+                    <span class="text-xl">💌</span>
+                </div>
+
+                <div class="space-y-3.5 text-gray-100 text-sm sm:text-[15px] leading-relaxed">
+                    <p>
+                        إنتِ مش مجرد شخص موجود في حياتي، إنتِ حد وجوده بيفرق معايا، وكلامه بيفرق، وضحكته بتفرق.
+                    </p>
+                    <p>
+                        بحب فيكي تفاصيل كتير، حتى التفاصيل الصغيرة اللي يمكن إنتِ نفسك مش واخدة بالك منها.
+                    </p>
+                    <p>
+                        وجودك بيخلّي للحاجات البسيطة معنى تاني، وكلمة منك ممكن تغيّر يوم كامل.
+                    </p>
+                    <p>
+                        وعشان كده حبيت أعملك المكان الصغير ده، عشان كل ما تدخليه تفتكري إن في حد بيتمنى ليكي الخير من قلبه، وبيفرح لما يشوفك مبسوطة ❤️
+                    </p>
+                </div>
+
+                <div class="mt-5 pt-4 border-t border-amber-400/20">
+                    <p class="text-[#f5b041] font-bold text-sm sm:text-base leading-relaxed">
+                        يا كنزي، خليكي دايمًا عارفة إنك غالية، وإنك تستاهلي كل حاجة جميلة في الدنيا.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. قسم "ليه إنتِ مميزة؟" -->
+        <section class="reveal-item mb-10">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl sm:text-[26px] font-extrabold text-white mb-1.5">
+                    ليه إنتِ مميزة؟ ✨
+                </h2>
+                <p class="text-gray-300 text-xs sm:text-sm">
+                    أسباب بتخلّي وجودك في الحياة حاجة تستأنس بيها
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- الكارت 1 -->
+                <div class="reveal-item glass-card rounded-3xl p-5 text-center">
+                    <div class="mx-auto mb-3 w-12 h-12 rounded-2xl bg-[#160b28] border border-amber-400/25 flex items-center justify-center text-2xl shadow-md">
+                        ❤️
+                    </div>
+                    <h3 class="text-[#f5b041] font-bold text-base sm:text-lg mb-1">
+                        وجودك بيفرق
+                    </h3>
+                    <p class="text-gray-200 text-xs sm:text-sm leading-relaxed">
+                        كل مكان بتكوني فيه بيكون أدفأ وأجمل بكتير.
+                    </p>
+                </div>
+
+                <!-- الكارت 2 -->
+                <div class="reveal-item glass-card rounded-3xl p-5 text-center">
+                    <div class="mx-auto mb-3 w-12 h-12 rounded-2xl bg-[#160b28] border border-amber-400/25 flex items-center justify-center text-2xl shadow-md">
+                        ✨
+                    </div>
+                    <h3 class="text-[#f5b041] font-bold text-base sm:text-lg mb-1">
+                        ضحكتك ليها مكان خاص
+                    </h3>
+                    <p class="text-gray-200 text-xs sm:text-sm leading-relaxed">
+                        ضحكتك قادرة تنور اليوم كله وتغير طاقة المكان.
+                    </p>
+                </div>
+
+                <!-- الكارت 3 -->
+                <div class="reveal-item glass-card rounded-3xl p-5 text-center">
+                    <div class="mx-auto mb-3 w-12 h-12 rounded-2xl bg-[#160b28] border border-amber-400/25 flex items-center justify-center text-2xl shadow-md">
+                        🌷
+                    </div>
+                    <h3 class="text-[#f5b041] font-bold text-base sm:text-lg mb-1">
+                        تفاصيلك كلها جميلة
+                    </h3>
+                    <p class="text-gray-200 text-xs sm:text-sm leading-relaxed">
+                        حتى التفاصيل البسيطة في كلامك وطريقتك مميزة جدًا.
+                    </p>
+                </div>
+
+                <!-- الكارت 4 -->
+                <div class="reveal-item glass-card rounded-3xl p-5 text-center">
+                    <div class="mx-auto mb-3 w-12 h-12 rounded-2xl bg-[#160b28] border border-amber-400/25 flex items-center justify-center text-2xl shadow-md">
+                        💫
+                    </div>
+                    <h3 class="text-[#f5b041] font-bold text-base sm:text-lg mb-1">
+                        إنتِ شخص غالي جدًا
+                    </h3>
+                    <p class="text-gray-200 text-xs sm:text-sm leading-relaxed">
+                        مكانتك في القلب مختلفة ومش زي أي حد تاني.
+                    </p>
+                </div>
+
+                <!-- الكارت 5 -->
+                <div class="reveal-item glass-card rounded-3xl p-5 text-center">
+                    <div class="mx-auto mb-3 w-12 h-12 rounded-2xl bg-[#160b28] border border-amber-400/25 flex items-center justify-center text-2xl shadow-md">
+                        🤍
+                    </div>
+                    <h3 class="text-[#f5b041] font-bold text-base sm:text-lg mb-1">
+                        وأجمل حاجة إنك إنتِ...
+                    </h3>
+                    <p class="text-gray-200 text-xs sm:text-sm leading-relaxed">
+                        كنزي.. بكل ما فيكي من طيبة وجمال روح.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. قسم المفاجأة الأخيرة والختام -->
+        <section class="reveal-item space-y-6">
+            <!-- كارت الاقتباس -->
+            <div class="glass-card rounded-[28px] p-6 text-center">
+                <h3 class="text-lg sm:text-xl font-extrabold text-[#f5b041] mb-4">
+                    لسه في حاجة صغيرة كمان...
+                </h3>
+                <div class="rounded-2xl bg-[#160b28]/90 border border-amber-400/30 p-5 shadow-inner">
+                    <p class="text-gray-100 text-sm sm:text-base font-semibold leading-relaxed">
+                        "لو وصلتي لهنا، فأنا عايزك تعرفي إن كل كلمة في الموقع ده اتعملت عشانك إنتِ بالذات ❤️"
+                    </p>
+                </div>
+            </div>
+
+            <!-- زر القلب الأصفر التفاعلي لإطلاق القلوب -->
+            <div class="flex flex-col items-center justify-center py-1">
+                <button
+                    type="button"
+                    id="magic-heart-btn"
+                    aria-label="أطلقي القلوب"
+                    class="w-16 h-16 rounded-full bg-[#1a0e2e] border-2 border-amber-400/45 shadow-[0_0_25px_rgba(245,176,65,0.3)] flex items-center justify-center text-3xl hover:scale-110 active:scale-90 transition-transform cursor-pointer"
+                >
+                    💛
+                </button>
+                <span class="text-[11px] text-amber-200/60 mt-2">اضغطي على القلب 💛</span>
+            </div>
+
+            <!-- الكارت الختامي والدعاء -->
+            <div class="glass-card rounded-[28px] p-6 sm:p-8 text-center border-amber-400/35">
+                <h3 class="text-xl sm:text-2xl font-extrabold text-white mb-4">
+                    ولسه آخر كلمة... ❤️
+                </h3>
+
+                <div class="space-y-3.5 text-gray-200 text-sm sm:text-[15px] leading-relaxed mb-6">
+                    <p>
+                        ربنا يخليكي ليا يا حبيبتي ويا عمري، وميحرمنيش منك أبدًا يا رب.
+                    </p>
+                    <p>
+                        يا نور عيني، ربنا يحفظك ليا ويحميكي ويوفقك في كل خطوة في حياتك، ونفضل دايمًا لبعض يا روح قلبي، وإن شاء الله الأيام الجاية تكون أحلى وأجمل، وربنا يكتب لنا الخير والسعادة دايمًا ❤️
+                    </p>
+                </div>
+
+                <div class="pt-3 border-t border-amber-400/20">
+                    <p class="text-2xl sm:text-[28px] font-extrabold text-[#f5b041] drop-shadow-[0_2px_12px_rgba(245,176,65,0.35)]">
+                        بحبك يا كنزي 💛
+                    </p>
+                </div>
+            </div>
+
+            <!-- تذييل الصفحة النهائي -->
+            <footer class="pt-4 pb-6 text-center">
+                <p class="text-xs text-amber-200/65 font-medium tracking-wide">
+                    ✨ Made with love, especially for Kenzy
+                </p>
+            </footer>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const CORRECT_PASSWORD = '19109';
+            const passwordForm = document.getElementById('password-form');
+            const passwordInput = document.getElementById('password-input');
+            const errorBox = document.getElementById('error-box');
+            const lockScreen = document.getElementById('lock-screen');
+            const mainContent = document.getElementById('main-content');
+
+            // 1. إنشاء جزيئات القلوب والنجوم العائمة في الخلفية
+            const ambientContainer = document.getElementById('ambient-container');
+            const ambientSymbols = ['✨', '❤️', '💛', '🤍', '✨'];
+            for (let i = 0; i < 18; i++) {
+                const el = document.createElement('span');
+                el.className = 'ambient-particle';
+                el.textContent = ambientSymbols[i % ambientSymbols.length];
+                el.style.left = `${Math.random() * 96}%`;
+                el.style.top = `${Math.random() * 96}%`;
+                el.style.fontSize = `${10 + Math.random() * 10}px`;
+                el.style.setProperty('--dur', `${3.5 + Math.random() * 4}s`);
+                el.style.setProperty('--delay', `${Math.random() * 3}s`);
+                ambientContainer.appendChild(el);
+            }
+
+            // 2. دالة إطلاق القلوب الطائرة التفاعلية
+            function spawnHearts(x, y, count = 8) {
+                const hearts = ['❤️', '💛', '🤍', '💖', '✨'];
+                for (let i = 0; i < count; i++) {
+                    const heart = document.createElement('span');
+                    heart.className = 'floating-heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    
+                    const offsetX = (Math.random() - 0.5) * 60;
+                    const drift = (Math.random() - 0.5) * 110;
+                    const drift2 = drift + (Math.random() - 0.5) * 80;
+                    const rot = (Math.random() - 0.5) * 45;
+
+                    heart.style.left = `${x + offsetX}px`;
+                    heart.style.top = `${y}px`;
+                    heart.style.fontSize = `${16 + Math.random() * 14}px`;
+                    heart.style.setProperty('--drift', `${drift}px`);
+                    heart.style.setProperty('--drift2', `${drift2}px`);
+                    heart.style.setProperty('--rot', `${rot}deg`);
+                    heart.style.animationDelay = `${i * 0.05}s`;
+
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 2200);
+                }
+            }
+
+            // 3. التحقق من كلمة السر عند الضغط على زر الدخول
+            passwordForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const enteredValue = passwordInput.value.trim();
+
+                if (enteredValue === CORRECT_PASSWORD) {
+                    // إخفاء رسالة الخطأ إن وجدت
+                    errorBox.classList.add('hidden');
+                    
+                    // إطلاق احتفالية قلوب من منتصف الشاشة
+                    const rect = passwordForm.getBoundingClientRect();
+                    spawnHearts(rect.left + rect.width / 2, rect.top, 18);
+
+                    // إخفاء شاشة القفل بسلاسة وإظهار الصفحة الرئيسية
+                    lockScreen.style.opacity = '0';
+                    lockScreen.style.transform = 'scale(0.95)';
+
+                    setTimeout(() => {
+                        lockScreen.classList.add('hidden');
+                        mainContent.classList.remove('hidden');
+                        window.scrollTo({ top: 0, behavior: 'instant' });
+
+                        requestAnimationFrame(() => {
+                            mainContent.classList.remove('opacity-0');
+                            initScrollObserver();
+                        });
+                    }, 550);
+                } else {
+                    // إظهار رسالة الخطأ مع أنيميشن الاهتزاز
+                    errorBox.classList.remove('hidden');
+                    errorBox.classList.remove('shake-error');
+                    passwordInput.classList.remove('shake-error');
+                    
+                    // إعادة تفعيل الأنيميشن
+                    void errorBox.offsetWidth;
+                    errorBox.classList.add('shake-error');
+                    passwordInput.classList.add('shake-error');
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            });
+
+            // 4. تفاعل فتح صندوق الهدية السري
+            const giftClosedCard = document.getElementById('gift-closed-card');
+            const secretLetterCard = document.getElementById('secret-letter-card');
+            const openBoxBtn = document.getElementById('open-box-btn');
+            const giftIconBtn = document.getElementById('gift-icon-btn');
+
+            function revealSecretLetter(e) {
+                const rect = e.currentTarget.getBoundingClientRect();
+                spawnHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 16);
+
+                giftClosedCard.style.opacity = '0';
+                giftClosedCard.style.transform = 'scale(0.94)';
+
+                setTimeout(() => {
+                    giftClosedCard.classList.add('hidden');
+                    secretLetterCard.classList.remove('hidden');
+                    secretLetterCard.style.opacity = '0';
+                    secretLetterCard.style.transform = 'translateY(16px)';
+
+                    requestAnimationFrame(() => {
+                        secretLetterCard.style.transition = 'all 0.65s cubic-bezier(0.22, 1, 0.36, 1)';
+                        secretLetterCard.style.opacity = '1';
+                        secretLetterCard.style.transform = 'translateY(0)';
+                    });
+                }, 300);
+            }
+
+            openBoxBtn.addEventListener('click', revealSecretLetter);
+            giftIconBtn.addEventListener('click', revealSecretLetter);
+
+            // 5. تفاعل زر القلب الأصفر في نهاية الصفحة
+            const magicHeartBtn = document.getElementById('magic-heart-btn');
+            magicHeartBtn.addEventListener('click', (e) => {
+                const rect = magicHeartBtn.getBoundingClientRect();
+                spawnHearts(rect.left + rect.width / 2, rect.top + rect.height / 2, 14);
+            });
+
+            // 6. مراقب الظهور التدريجي عند التمرير (IntersectionObserver)
+            function initScrollObserver() {
+                const revealItems = document.querySelectorAll('.reveal-item');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.12,
+                    rootMargin: '0px 0px -30px 0px'
+                });
+
+                revealItems.forEach((item) => observer.observe(item));
+            }
+        });
+    </script>
+</body>
+</html>
